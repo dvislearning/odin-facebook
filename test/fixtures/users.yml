@@ -1,3 +1,11 @@
 example:
   username: Example User
   email: Example@example.com
+  
+red:
+  username: Color Red
+  email: red@example.com
+  
+orange:
+  username: Color Orange
+  email: orange@example.com  
