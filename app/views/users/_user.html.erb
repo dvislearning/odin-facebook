@@ -1,3 +1,9 @@
 <li>
   <%= link_to user.username, user %>
+  
+  <% if current_user.find_relationship(user).empty? %>
+    <%= render 'friend_form', user: user %>
+  <% else %>
+    <%= render 'unfriend_form', user: user %>
+  <% end %>
 </li>

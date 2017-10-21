@@ -14,9 +14,11 @@ class User < ApplicationRecord
   has_many :received_requests, class_name:  "Relationship",
                                    foreign_key: "receiver_id",
                                    dependent:   :destroy
-  # Sends friend request.
-  def friend_request(other_user)
-    requesters << other_user
+
+
+  # finds relationship between two users
+  def find_relationship(other_user)
+    requested_friend =  Relationship.where(requester_id: self.id).where(receiver_id: other_user.id)
+    requested_friend.any? ? requested_friend : Relationship.where(requester_id: other_user.id).where(receiver_id: self.id)
   end
-  
 end
