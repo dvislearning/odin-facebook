@@ -9,3 +9,21 @@ red:
 orange:
   username: Color Orange
   email: orange@example.com  
+  
+yellow:
+  username: Color Yellow
+  email: yellow@example.com
+  
+green:
+  username: Color Green
+  email: green@example.com
+  
+blue:
+  username: Color Blue
+  email: blue@example.com      
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  username:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+<% end %>  

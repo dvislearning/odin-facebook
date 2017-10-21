@@ -7,3 +7,13 @@ one:
 two:
   requester: red
   receiver: orange
+
+three:
+  requester: orange
+  receiver: example
+
+# example is not friends with yellow
+
+four:
+  requester: example
+  receiver: green
