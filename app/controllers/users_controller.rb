@@ -10,6 +10,6 @@ class UsersController < ApplicationController
   end
   
   def pending
-    @pending_friends = current_user.received_requests.all
+    @pending_friends = current_user.received_requests.pending.all
   end  
 end

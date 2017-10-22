@@ -1,4 +1,6 @@
 <li>
   <% requester = pending_friend.requester %>
   <%= link_to requester.username, requester %>
+  <%= render 'confirm_friend_form', user: requester %>
+  <%= render 'unfriend_form', user: requester %>
 </li>

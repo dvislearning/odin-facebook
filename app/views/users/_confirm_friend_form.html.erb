@@ -1,0 +1,5 @@
+<% relationship = current_user.find_relationship(user).first %>
+<%= form_for(relationship) do |f| %>
+  <div><%= hidden_field_tag :relationship_id, relationship.id %></div>
+  <%= f.submit yield(:add_button_text), class: "btn btn-primary" %>
+<% end %>

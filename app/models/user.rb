@@ -24,6 +24,6 @@ class User < ApplicationRecord
   
   # checks to see if user has pending friend requests
   def has_pending_requests?
-    received_requests.any?
+    received_requests.pending.any?
   end
 end
