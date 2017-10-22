@@ -11,6 +11,9 @@ class RelationshipsController < ApplicationController
     end
   end
   
+  def update
+  end
+  
   def destroy
     @friendship = Relationship.find(params[:relationship_id])
     @friendship.destroy

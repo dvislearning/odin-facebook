@@ -1,0 +1,14 @@
+<% provide(:title, 'Pending Friends') %>
+<h1>Pending Friend Requests</h1>
+
+<ul class="users">
+    <% if @pending_friends.empty? %>
+        <h2>You have no pending friends</h2>
+    <% else %>
+        <ul class="users">
+          <%= render partial: "users/pending_friend", collection: @pending_friends %>
+        </ul>    
+    <% end %>
+</ul>
+
+

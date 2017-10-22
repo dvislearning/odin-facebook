@@ -8,4 +8,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all.paginate(page: params[:page])
   end
+  
+  def pending
+    @pending_friends = current_user.received_requests.all
+  end  
 end

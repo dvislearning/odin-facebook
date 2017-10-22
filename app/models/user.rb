@@ -21,4 +21,9 @@ class User < ApplicationRecord
     requested_friend =  Relationship.where(requester_id: self.id).where(receiver_id: other_user.id)
     requested_friend.any? ? requested_friend : Relationship.where(requester_id: other_user.id).where(receiver_id: self.id)
   end
+  
+  # checks to see if user has pending friend requests
+  def has_pending_requests?
+    received_requests.any?
+  end
 end
