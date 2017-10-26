@@ -3,8 +3,10 @@
     <%= link_to "OFB", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <% if current_user.has_pending_requests? %>
-          <li><%= link_to "NEW FRIENDS!", pending_path %></li>
+        <% if user_signed_in?  %>
+          <% if current_user.has_pending_requests? %>
+            <li><%= link_to "NEW FRIENDS!", pending_path %></li>
+          <% end %>
         <% end %>
         <li><%= link_to "Home", '#' %></li>
           <li class="dropdown">

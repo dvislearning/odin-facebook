@@ -31,5 +31,14 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
-    
+  
+  test "should find relationship when either requester or receiver calls it"  do
+    user_1 = users(:example)
+    user_2 = users(:red)
+    relationship = Relationship.new(requester_id: user_1.id, receiver_id: user_2.id)
+    assert_equal relationship.requester, user_1.find_relationship(user_2).first.requester
+    assert_equal relationship.receiver, user_1.find_relationship(user_2).first.receiver
+    assert_equal relationship.requester, user_2.find_relationship(user_1).first.requester
+    assert_equal relationship.receiver, user_2.find_relationship(user_1).first.receiver
+  end
 end

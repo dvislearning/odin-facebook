@@ -1,10 +1,15 @@
-
-<li>
-  <%= link_to user.username, user %>
-  
-  <% if current_user.find_relationship(user).empty? %>
-    <%= render 'friend_form', user: user %>
-  <% else %>
-    <%= render 'unfriend_form', user: user %>
-  <% end %>
-</li>
+<% unless current_user == user  %>
+  <li>
+    <%= link_to user.username, user %>
+    
+    <% if current_user.find_relationship(user).empty? %>
+      <div class="friend_form", id="friend-<%= user.email  %>">
+        <%= render 'friend_form', user: user %>
+      </div>
+    <% else %>
+      <div id="unfriend-<%= user.email  %>", class="unfriend_form">
+        <%= render 'unfriend_form', user: user %>
+      </div>
+    <% end %>
+  </li>
+<% end %>

@@ -13,7 +13,11 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_template 'users/index'
     assert_select 'div.pagination', count: 2
     User.paginate(page: 1).each do |user|
-      assert_select 'a[href=?]', user_path(user), text: user.username
+      assert_select 'a[href=?]', user_path(user)
     end
+    red = users(:red) # friends with example
+    yellow = users(:yellow) # not friends with example
+    assert_select "div[id=?]", "unfriend-#{red.email}"
+    assert_select "div[id=?]", "friend-#{yellow.email}"
   end
 end

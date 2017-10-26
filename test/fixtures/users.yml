@@ -2,6 +2,10 @@ example:
   username: Example User
   email: Example@example.com
   
+friendless_example:
+  username: Friendless Example User
+  email: friendless@example.com  
+  
 red:
   username: Color Red
   email: red@example.com
