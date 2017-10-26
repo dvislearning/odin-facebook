@@ -18,12 +18,13 @@ class PendingPageTest < ActionDispatch::IntegrationTest
   end
   
   test 'pending page with pending requests' do
-    @red.sent_requests.create(receiver_id: @friendless_user.id)
+    @friend_request = @red.sent_requests.create(receiver_id: @friendless_user.id)
     get pending_path
     assert_template 'users/pending'
+    assert_match "NEW FRIENDS!", response.body
     assert_select "div[id=?]", "confirm-#{@red.email}"
     assert_select "div[id=?]", "ignore-#{@red.email}"
-    # tests header notification 
-    assert_match "NEW FRIENDS!", response.body
+    patch relationship_path(@friend_request), params: { relationship_id: @friend_request.id }
+    assert_equal true, Relationship.find(@friend_request.id).confirmed_friends
   end  
 end
