@@ -1,0 +1,15 @@
+middle_hand:
+  content: "Iam holding porridge in my middle hand."
+  created_at: <%= 10.minutes.ago %>
+
+left_hand:
+  content: "I am holding a banana in my left hand."
+  created_at: <%= 3.years.ago %>
+
+right_hand:
+  content: "I am holding an apple in my right hand"
+  created_at: <%= 2.hours.ago %>
+
+most_recent:
+  content: "This is going to be the most recent post."
+  created_at: <%= Time.zone.now %>

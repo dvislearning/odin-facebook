@@ -41,4 +41,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal relationship.requester, user_2.find_relationship(user_1).first.requester
     assert_equal relationship.receiver, user_2.find_relationship(user_1).first.receiver
   end
+  
+  test "associated posts should be destroyed" do
+    @user.save
+    @user.posts.create!(content: "Lorem ipsum")
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
+  end  
 end

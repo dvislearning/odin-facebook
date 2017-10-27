@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :received_requests, class_name:  "Relationship",
                                    foreign_key: "receiver_id",
                                    dependent:   :destroy
+  has_many :posts, dependent: :destroy                                 
 
 
   # finds relationship between two users
