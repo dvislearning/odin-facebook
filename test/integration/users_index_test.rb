@@ -17,7 +17,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     end
     red = users(:red) # friends with example
     yellow = users(:yellow) # not friends with example
-    assert_select "div[id=?]", "unfriend-#{red.email}"
-    assert_select "div[id=?]", "friend-#{yellow.email}"
+    assert_select "div[id=?]", "unfriend-#{red.id}"
+    assert_select "div[id=?]", "friend-#{yellow.id}"
   end
 end

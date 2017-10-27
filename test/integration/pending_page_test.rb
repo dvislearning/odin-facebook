@@ -22,8 +22,8 @@ class PendingPageTest < ActionDispatch::IntegrationTest
     get pending_path
     assert_template 'users/pending'
     assert_match "NEW FRIENDS!", response.body
-    assert_select "div[id=?]", "confirm-#{@red.email}"
-    assert_select "div[id=?]", "ignore-#{@red.email}"
+    assert_select "div[id=?]", "confirm-#{@red.id}"
+    assert_select "div[id=?]", "ignore-#{@red.id}"
     patch relationship_path(@friend_request), params: { relationship_id: @friend_request.id }
     assert_equal true, Relationship.find(@friend_request.id).confirmed_friends
   end  
