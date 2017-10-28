@@ -27,4 +27,9 @@ class User < ApplicationRecord
   def has_pending_requests?
     received_requests.pending.any?
   end
+  
+  # retrives a user's timeline posts
+  def timeline
+    posts.all
+  end
 end
