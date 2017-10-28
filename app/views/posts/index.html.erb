@@ -1,6 +1,8 @@
 <% provide(:title, 'Your Timeline') %>
 <h1>Welcome, <%= current_user.username  %>!</h1>
 
+<%= render 'post_form'  %>
+
 <%= will_paginate %>
 
 <ul class="posts">
