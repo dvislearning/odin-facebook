@@ -30,6 +30,14 @@ class User < ApplicationRecord
   
   # retrives a user's timeline posts
   def timeline
-    posts.all
+    sent_friends = "SELECT receiver_id FROM relationships
+                    WHERE  requester_id = :user_id
+                    AND confirmed_friends = true"
+    received_friends = "SELECT requester_id FROM relationships
+                    WHERE  receiver_id = :user_id
+                    AND confirmed_friends = true"    
+    Post.where("user_id IN (#{sent_friends}) OR 
+                user_id IN (#{received_friends} OR
+                user_id = :user_id)", user_id: id)
   end
 end
