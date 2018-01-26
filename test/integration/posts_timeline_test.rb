@@ -5,6 +5,7 @@ class PostsTimelineTest < ActionDispatch::IntegrationTest
   
   def setup
     sign_in users(:example)
+    @user = users(:example)
   end
   
   test "timeline display" do

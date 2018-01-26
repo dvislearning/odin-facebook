@@ -1,15 +1,26 @@
 middle_hand:
+  user: example
   content: "Iam holding porridge in my middle hand."
   created_at: <%= 10.minutes.ago %>
 
 left_hand:
+  user: red
   content: "I am holding a banana in my left hand."
   created_at: <%= 3.years.ago %>
 
 right_hand:
+  user: orange
   content: "I am holding an apple in my right hand"
   created_at: <%= 2.hours.ago %>
 
 most_recent:
+  user: red
   content: "This is going to be the most recent post."
   created_at: <%= Time.zone.now %>
+  
+<% 30.times do |n| %>
+user_post_<%= n %>:
+  user: example
+  content:  Faker::Lorem.sentence(5)
+  created_at: <%= 30.minutes.ago %>
+<% end %>  
