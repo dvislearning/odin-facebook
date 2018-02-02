@@ -20,4 +20,5 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select "div[id=?]", "unfriend-#{red.id}"
     assert_select "div[id=?]", "friend-#{yellow.id}"
   end
+  
 end

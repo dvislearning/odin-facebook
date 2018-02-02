@@ -1,5 +1,8 @@
+
 <li id="post-<%= post.id %>">
-  <span class="user"><%= link_to post.user.username, post.user %></span>
+  <span class="user"><%= link_to post.user.username, post.user %> - 
+  <%= pluralize(post.likes.count, "like") %></span>
+  
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
@@ -8,4 +11,9 @@
                                      data: { confirm: "You sure?" } %>
   <% end %>
   </span>
+  <% if current_user.post_liked?(post) %>
+    <%= render 'unlike_form', post: post %>
+  <% else %>
+    <%= render 'like_form', post: post %>
+  <%end%>
 </li>

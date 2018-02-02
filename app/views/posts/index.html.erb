@@ -1,4 +1,7 @@
 <% provide(:title, 'Your Timeline') %>
+<% provide(:add_like_text, 'Like Post') %>
+<% provide(:delete_like_text, 'Unlike Post') %>
+
 <h1>Welcome, <%= current_user.username  %>!</h1>
 
 <%= render 'post_form'  %>

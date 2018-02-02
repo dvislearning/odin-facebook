@@ -24,6 +24,16 @@ class User < ApplicationRecord
     requested_friend.any? ? requested_friend : Relationship.where(requester_id: other_user.id).where(receiver_id: self.id)
   end
   
+  # checks if user has liked a post
+  def post_liked?(post)
+    find_like(post).any?
+  end
+  
+  # finds record where user liked a post
+  def find_like(post)
+    Like.where(user_id: self.id).where(post_id: post.id)
+  end
+  
   # checks to see if user has pending friend requests
   def has_pending_requests?
     received_requests.pending.any?

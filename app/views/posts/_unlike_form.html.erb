@@ -1,0 +1,6 @@
+<% like = current_user.find_like(post).first %>
+<%= form_for(like,
+             html: { method: :delete }) do |f| %>
+  <div><%= hidden_field_tag :like_id, like.id %></div>
+  <%= f.submit yield(:delete_like_text), class: "btn btn-primary" %>
+<% end %>

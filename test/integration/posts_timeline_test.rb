@@ -11,7 +11,7 @@ class PostsTimelineTest < ActionDispatch::IntegrationTest
   test "timeline display" do
     get posts_path
     assert_template 'posts/index'
-    @user.posts.paginate(page: 1).each do |post|
+    @user.timeline.paginate(page: 1).each do |post|
       assert_match post.content, response.body
     end
   end  
