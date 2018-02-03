@@ -6,7 +6,7 @@ middle_hand:
 left_hand:
   user: red
   content: "I am holding a banana in my left hand."
-  created_at: <%= 3.years.ago %>
+  created_at: <%= 3.minutes.ago %>
 
 right_hand:
   user: orange
@@ -17,6 +17,18 @@ most_recent:
   user: red
   content: "This is going to be the most recent post."
   created_at: <%= Time.zone.now %>
+
+yellow_post:
+  user: yellow
+  content: "I should not appear on Example User's timeline."
+  created_at: <%= 4.minutes.ago %>
+
+most_recent:
+  user: yellow
+  content: "I should not appear on Example User's timeline."
+  created_at: <%= Time.zone.now %>
+
+
   
 <% 30.times do |n| %>
 user_post_<%= n %>:

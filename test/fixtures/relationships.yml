@@ -3,17 +3,30 @@
 one:
   requester: example
   receiver: red
+  confirmed_friends: True  
 
 two:
   requester: red
   receiver: orange
+  confirmed_friends: True  
 
 three:
   requester: orange
   receiver: example
+  confirmed_friends: True  
 
 # example is not friends with yellow
 
 four:
   requester: example
   receiver: green
+  confirmed_friends: True  
+  
+# neither green nor blue are friends with example
+
+five:
+  requester: yellow
+  receiver: blue
+  confirmed_friends: True
+  
+
