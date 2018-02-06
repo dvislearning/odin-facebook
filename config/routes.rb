@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#new'  
   devise_for :users
   get '/pending', to: 'users#pending'
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index, :update]
   resources :relationships, only: [:create, :update, :destroy]
   resources :posts, only: [:index, :create, :destroy]
   resources :likes, only: [:create, :destroy]

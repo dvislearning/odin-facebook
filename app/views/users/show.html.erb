@@ -1,5 +1,18 @@
 <% provide(:title, @user.username) %>
+<% provide(:add_like_text, 'Like Post') %>
+<% provide(:delete_like_text, 'Unlike Post') %>
+
 <h1><%= @user.username %></h1>
+<%= gravatar_for @user %>
 <p>E-mail: <%= @user.email %></p>
 <p>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></p>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<br>
+
+<%= will_paginate @posts %>
+
+<ul class="posts">
+  <%= render @posts %>
+</ul>
+
+<%= will_paginate @posts %>

@@ -22,5 +22,3 @@ class PostsTimelineTest < ActionDispatch::IntegrationTest
     end
   end  
 end
-
-# Write tests checking if friends and non friends appear on timeline.

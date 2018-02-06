@@ -12,8 +12,8 @@
   <% end %>
   </span>
   <% if current_user.post_liked?(post) %>
-    <%= render 'unlike_form', post: post %>
+    <%= render 'posts/unlike_form', post: post %>
   <% else %>
-    <%= render 'like_form', post: post %>
+    <%= render 'posts/like_form', post: post %>
   <%end%>
 </li>

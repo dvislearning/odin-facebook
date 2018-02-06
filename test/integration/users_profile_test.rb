@@ -15,4 +15,11 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: @user.username
     assert_match @user.email, response.body
   end
+  
+  test "should display user's timeline" do
+    get user_path(@user)
+    @user.timeline.paginate(page: 1).each do |post|
+      assert_match post.content, response.body
+    end
+  end
 end
