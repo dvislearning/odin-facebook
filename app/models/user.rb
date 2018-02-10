@@ -16,6 +16,7 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  after_create :send_welcome_email
 
 
   # finds relationship between two users
@@ -51,4 +52,10 @@ class User < ApplicationRecord
                 user_id IN (#{received_friends} OR
                 user_id = :user_id)", user_id: id)
   end
+  
+  private
+
+    def send_welcome_email
+      UserMailer.welcome_email(self).deliver
+    end   
 end
