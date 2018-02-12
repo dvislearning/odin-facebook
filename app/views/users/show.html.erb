@@ -3,7 +3,8 @@
 <% provide(:delete_like_text, 'Unlike Post') %>
 
 <h1><%= @user.username %></h1>
-<%= gravatar_for @user %>
+<!--<%= gravatar_for @user %>-->
+<%= image_tag @user.avatar.url %>
 <p>E-mail: <%= @user.email %></p>
 <p>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></p>
 

@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   after_create :send_welcome_email
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, 
+                    default_url: "missing.png"
 
 
   # finds relationship between two users
