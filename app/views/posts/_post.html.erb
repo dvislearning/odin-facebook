@@ -11,9 +11,17 @@
                                      data: { confirm: "You sure?" } %>
   <% end %>
   </span>
+  <span class="like_buttons">
   <% if current_user.post_liked?(post) %>
     <%= render 'posts/unlike_form', post: post %>
   <% else %>
     <%= render 'posts/like_form', post: post %>
   <%end%>
+  </span>
+  
+  <span class="comments">
+    <span class ="comment_count">Post has <%= pluralize( post.comments.count, "comment") %><br />
+    <span class="comment"><%= render post.comments %></span>
+  </span>
+  
 </li>
