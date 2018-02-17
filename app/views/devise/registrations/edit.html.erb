@@ -4,9 +4,10 @@
   <%= devise_error_messages! %>
 
   <div class="gravatar_edit">
-    <%= gravatar_for @user %><br />
-    <a href="http://gravatar.com/emails" target="_blank">change</a>
+    Edit your Profile Picture: <br />
+    <%= f.file_field :avatar %><br />
   </div>   
+  
   
   <div class="field">
     <%= f.label :email %><br />

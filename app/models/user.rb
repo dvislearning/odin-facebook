@@ -20,6 +20,8 @@ class User < ApplicationRecord
   after_create :send_welcome_email
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, 
                     default_url: "missing.png"
+  validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
 
 
   # finds relationship between two users
