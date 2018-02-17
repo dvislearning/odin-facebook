@@ -2,7 +2,7 @@ User.create!(username:  "Example User",
              email: "example@example.net",
              password: "password",
              password_confirmation: "password")
-
+             
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@example.com"
@@ -24,15 +24,16 @@ end
   end
 end
 
-# (21..30).each do |n|
-#   (1..10).each do |m|
-#     relationship = User.find(n).sent_requests.create!(receiver_id: m)
-#     relationship.toggle!(:confirmed_friends) unless n%2 == 0
-#   end
-# end
-
 users = User.order(:created_at).take(9)
-50.times do
+50.times do |n|
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.posts.create!(content: content) }
+  comment = Faker::Lorem.sentence
+  users.each do |user|
+    post = user.posts.create!(content: content)
+    if n % 3 == 0
+      user.comments.create!(content: comment, 
+                            commentable_id: post.id,
+                            commentable_type: "Post")
+    end
+  end
 end
