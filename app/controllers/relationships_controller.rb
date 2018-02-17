@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
       redirect_to root_url
     else
       flash[:notice] = "Unable to Add Friend"
-      redirect_to root_url
+      redirect_back(fallback_location: users_path)
     end
   end
   
@@ -15,13 +15,13 @@ class RelationshipsController < ApplicationController
     @friendship = Relationship.find(params[:relationship_id])
     @friendship.update_attribute(:confirmed_friends,    true)
     flash[:notice] = "Friendship Confirmed!"
-    redirect_to pending_path
+    redirect_back(fallback_location: pending_path)
   end
   
   def destroy
     @friendship = Relationship.find(params[:relationship_id])
     @friendship.destroy
     flash[:notice] = "Friendship Deleted"
-    redirect_to current_user
+    redirect_back(fallback_location: users_path)
   end  
 end

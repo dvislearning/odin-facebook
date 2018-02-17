@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
+comment_one:
+  user: example
+  commentable: middle_hand
+  commentable_type: "Post"
+  content: "This is comment one!"
 
-two:
-  content: MyText
+comment_two:
+  user: red
+  commentable: middle_hand
+  commentable_type: "Post"
+  content: "This is comment two!"

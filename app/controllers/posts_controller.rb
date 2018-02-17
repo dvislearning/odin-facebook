@@ -10,10 +10,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post Saved!"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: posts_path)
     else
       flash[:notice] = "Unable to Save Post"
-      redirect_to posts_url
+      redirect_back(fallback_location: posts_path)
     end
   end
   
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find_by(id: params[:id])
     @post.destroy
     flash[:success] = "Post deleted"
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: posts_path)
   end
   
   private

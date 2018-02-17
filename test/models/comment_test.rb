@@ -16,6 +16,16 @@ class CommentTest < ActiveSupport::TestCase
     @comment.user_id = nil
     assert_not @comment.valid?
   end
+  
+  test "commentable id should be present" do
+    @comment.commentable_id = nil
+    assert_not @comment.valid?
+  end
+  
+  test "commentable type should be present" do
+    @comment.commentable_type = nil
+    assert_not @comment.valid?
+  end  
 
   test "content should be present" do
     @post.content = "   "

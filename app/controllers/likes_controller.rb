@@ -7,14 +7,13 @@ class LikesController < ApplicationController
     else
       flash[:notice] = "Cannot Like Post"
     end
-    redirect_to posts_path
+    redirect_back(fallback_location: posts_path)
   end  
   
   def destroy
     @like = Like.find(params[:like_id])
     @like.destroy
     flash[:notice] = "Post Unliked"
-    redirect_to posts_path
+    redirect_back(fallback_location: posts_path)
   end  
-  
 end

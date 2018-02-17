@@ -3,9 +3,8 @@ class Comment < ApplicationRecord
   belongs_to :user
   validates :user_id,  presence: true
   validates :content,  presence: true, length: { maximum: 5001 }
+  validates :commentable_id,  presence: true
+  validates :commentable_type,  presence: true
   
-  # Over-rode this method to avoid generating comment controller.  Reconsider refactoring.
-  def to_partial_path
-    'posts/comment'
-  end  
+
 end

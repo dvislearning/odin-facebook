@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:notice] = "Comment Added!"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: posts_path)
     else
       flash[:notice] = "Unable to Save comment"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: posts_path)
     end
   end
   
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find_by(id: params[:id])
     @comment.destroy
     flash[:success] = "comment deleted"
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: posts_path)
   end
   
   private
