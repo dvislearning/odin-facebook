@@ -1,7 +1,8 @@
 class LikesController < ApplicationController
   
   def create
-    @like = current_user.likes.build(post_id: params[:post_id])
+    @like = current_user.likes.build(likeable_id: params[:likeable_id], 
+                                     likeable_type: params[:likeable_type])
     if @like.save
       flash[:notice] = "Post Liked"
     else

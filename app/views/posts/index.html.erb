@@ -4,12 +4,15 @@
 
 <h1>Welcome, <%= current_user.username  %>!</h1>
 
-<%= render 'post_form'  %>
+<%= render 'post_form'  %><br/ >
+
+<h3>Post a Picture</h3>
+<%= render 'picture_form'  %>
 
 <%= will_paginate %>
 
 <ul class="posts">
-  <%= render @posts %>
+  <%= render 'posts' %>
 </ul>
 
 <%= will_paginate %>

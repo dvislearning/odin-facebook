@@ -16,7 +16,8 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :pictures, dependent: :destroy
   after_create :send_welcome_email
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, 
                     default_url: "missing.png"
@@ -36,24 +37,25 @@ class User < ApplicationRecord
   end
   
   # finds record where user liked a post
-  def find_like(post)
-    Like.where(user_id: self.id).where(post_id: post.id)
+  def find_like(resource)
+    Like.send(:where, "user_id": self.id, "likeable_id": resource.id, 
+              "likeable_type": "#{resource.class.to_s}")
   end
   
   # checks to see if user has pending friend requests
   def has_pending_requests?
     received_requests.pending.any?
   end
-  
-  # retrives a user's timeline posts
+
+  # retrives a user's timeline posts and pictures
   def timeline
     sent_friends = "SELECT receiver_id FROM relationships
                     WHERE  requester_id = :user_id
                     AND confirmed_friends = true"
     received_friends = "SELECT requester_id FROM relationships
                     WHERE  receiver_id = :user_id
-                    AND confirmed_friends = true"    
-    Post.where("user_id IN (#{sent_friends}) OR 
+                    AND confirmed_friends = true"
+    Timeline.where("user_id IN (#{sent_friends}) OR 
                 user_id IN (#{received_friends} OR
                 user_id = :user_id)", user_id: id)
   end
@@ -62,5 +64,6 @@ class User < ApplicationRecord
 
     def send_welcome_email
       UserMailer.welcome_email(self).deliver
-    end   
+    end
+    
 end

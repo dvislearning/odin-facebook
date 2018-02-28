@@ -5,6 +5,4 @@ class Comment < ApplicationRecord
   validates :content,  presence: true, length: { maximum: 5001 }
   validates :commentable_id,  presence: true
   validates :commentable_type,  presence: true
-  
-
 end

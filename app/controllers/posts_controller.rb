@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = current_user.timeline.paginate(page: params[:page])
     @post = current_user.posts.build
+    @picture = current_user.pictures.build
   end
   
   def create

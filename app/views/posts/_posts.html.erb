@@ -1,0 +1,9 @@
+<% @posts.each do | post | %>
+  <% if post.picture_id.nil? %>
+    <% current_post = Post.find(post.post_id) %>
+    <%= render 'posts/post', post: current_post %>
+  <% else %>
+    <% current_pic = Picture.find(post.picture_id) %>
+    <%= render 'posts/picture', picture: current_pic %>
+  <% end %>
+<% end %>

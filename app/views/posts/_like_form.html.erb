@@ -1,4 +1,5 @@
 <%= form_for(current_user.likes.build, remote: true) do |f| %>
-  <div><%= hidden_field_tag :post_id, post.id %></div>
+  <div><%= hidden_field_tag :likeable_id, post.id %></div>
+  <div><%= hidden_field_tag :likeable_type, "#{post.class.to_s}" %></div>  
   <%= f.submit yield(:add_like_text), class: "btn btn-primary" %>
 <% end %>
