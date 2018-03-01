@@ -7,6 +7,7 @@ class PostInterfaceTest < ActionDispatch::IntegrationTest
     sign_in users(:example)
     @user = users(:example)
     @example_post = posts(:middle_hand) # Post by Example_user
+    add_timeline(@user, @example_post)
     @comment_1 = comments(:comment_one) # Comment by Example_user
     @comment_2 = comments(:comment_two) # Comment not by Example_user
   end

@@ -13,13 +13,13 @@ class PostLikingTest < ActionDispatch::IntegrationTest
   test "user should be able to like post" do
     assert @post.likes.count, 0
     assert_difference 'Like.count', 1 do
-      post likes_path, params: { post_id: @post.id }
+      post likes_path, params: { likeable_id: @post.id, likeable_type: "Post" }
     end
   end
   
   test "user should be able to unlike post" do
     assert_difference 'Like.count', -1 do
-      like = Like.last
+      like = @like
       delete like_path(like.id), params: { like_id: like.id }
     end
   end

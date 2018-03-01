@@ -7,4 +7,9 @@ class ActiveSupport::TestCase
   include ApplicationHelper
 
   # Add more helper methods to be used by all tests here...
+  
+  def add_timeline(user, resource)
+    Timeline.send(:create!, "user_id": user.id, 
+                  "#{resource.class.to_s.downcase}_id": resource.id)
+  end
 end

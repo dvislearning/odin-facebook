@@ -28,4 +28,10 @@ class PostTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal posts(:most_recent), Post.first
   end  
+  
+  test "should create timeline record after post creation" do
+    assert_difference 'Timeline.count', 1 do
+      Post.create!(user: @user, content: "Testing the timeline.")
+    end
+  end
 end

@@ -4,7 +4,7 @@ class LikeTest < ActiveSupport::TestCase
   def setup
     @user = users(:example)
     @post = posts(:left_hand)
-    @like = @user.likes.build(post:@post)
+    @like = @user.likes.build(likeable_id: @post.id, likeable_type: "Post")
   end
   
   test 'should be valid' do
@@ -16,10 +16,15 @@ class LikeTest < ActiveSupport::TestCase
     assert_not @like.valid?
   end
   
-  test 'post_id should be valid' do
-    @like.post_id = nil
+  test 'likeable_id should be present' do
+    @like.likeable_id = nil
     assert_not @like.valid?
   end
+  
+  test 'likeable_type should be present' do
+    @like.likeable_type = nil
+    assert_not @like.valid?
+  end  
   
   test 'should not allow like of post by user twice' do
     second_like = @user.dup
