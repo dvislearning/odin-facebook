@@ -21,7 +21,6 @@ class PostInterfaceTest < ActionDispatch::IntegrationTest
     assert_match @comment_2.content, response.body
     # Can create posts
     content = "This is a post from example"
-    # picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
     assert_difference 'Post.count', 1 do
       post posts_path, params: { post: { content: content} }
     end
@@ -39,5 +38,25 @@ class PostInterfaceTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_match comment, response.body
+    # Delete post
+    assert_select 'a', text: 'delete'
+    latest_post_id = @user.timeline.paginate(page: 1).first.post_id
+    latest_post = Post.find(latest_post_id)
+    assert_difference 'Post.count', -1 do
+      delete post_path(latest_post)
+    end
+    follow_redirect!
+    # Uploaded pictures show up on timeline
+    sample_pic = fixture_file_upload('test/fixtures/rails.png', 'image/png')
+    assert_difference 'Picture.count', 1 do
+      post pictures_path, params: { picture: { image: sample_pic } }
+    end
+    # Can delete pictures
+    follow_redirect!
+    latest_pic_id = @user.timeline.paginate(page: 1).first.picture_id
+    latest_pic = Picture.find(latest_pic_id)
+    assert_difference 'Picture.count', -1 do
+      delete picture_path(latest_pic)
+    end    
   end
 end

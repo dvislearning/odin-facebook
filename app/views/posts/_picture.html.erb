@@ -1,1 +1,29 @@
-A picture from <%= picture.user.username %>
+
+<li id="picture-<%= picture.id %>">
+  <span class="user"><%= link_to picture.user.username, picture.user %> - 
+  <%= pluralize(picture.likes.count, "like") %></span>
+  
+  <span class="content"><%= image_tag picture.image.url(:medium) %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(picture.created_at) %> ago.
+  <% if current_user == picture.user %>
+    <%= link_to "delete", picture, method: :delete,
+                                     data: { confirm: "You sure?" } %>
+  <% end %>
+  </span>
+  <span class="like_buttons">
+  <% if current_user.post_liked?(picture) %>
+    <%= render 'posts/unlike_form', post: picture %>
+  <% else %>
+    <%=  render 'posts/like_form', post: picture %>
+  <% end %>
+  </span>
+  
+  <span class="comments">
+    <span class ="comment_count">Post has <%= pluralize( picture.comments.count, "comment") %><br />
+    <span class="comment"><%= render picture.comments %></span>
+  </span>
+  
+  <span class="comment_form"><%= render 'comments/comment_form', post: picture %></span>
+  
+</li>
