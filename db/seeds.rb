@@ -1,3 +1,5 @@
+# Create seed users
+
 User.create!(username:  "Example User",
              email: "example@example.net",
              password: "password",
@@ -10,6 +12,9 @@ User.create!(username:  "Example User",
                email: email)
 end
 
+
+# Have some users make friend requests and others receive.  
+# Some as uncomfirmed.
 (1..3).each do |n|
   (4..6).each do |m|
     relationship = User.find(n).received_requests.create!(requester_id: m)
@@ -24,9 +29,11 @@ end
   end
 end
 
+
+# Make posts with comments
 users = User.order(:created_at).take(9)
 50.times do |n|
-  content = Faker::Lorem.sentence(5)
+  content = Faker::Lorem.sentence(4)
   comment = Faker::Lorem.sentence
   users.each do |user|
     post = user.posts.create!(content: content)
