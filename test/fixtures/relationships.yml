@@ -16,17 +16,14 @@ three:
   confirmed_friends: True  
 
 # example is not friends with yellow
-
 four:
   requester: example
   receiver: green
   confirmed_friends: True  
   
 # neither green nor blue are friends with example
-
 five:
   requester: yellow
   receiver: blue
   confirmed_friends: True
-  
 

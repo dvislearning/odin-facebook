@@ -25,6 +25,11 @@ green:
 blue:
   username: Color Blue
   email: blue@example.com      
+
+purple:
+  username: Color Purple
+  email: purple@example.com      
+
   
 <% 30.times do |n| %>
 user_<%= n %>:
