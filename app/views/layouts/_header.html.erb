@@ -7,7 +7,6 @@
           <% if current_user.has_pending_requests? %>
             <li><%= link_to "NEW FRIENDS!", pending_path %></li>
           <% end %>
-        <% end %>
         <li><%= link_to "Home", posts_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -24,6 +23,7 @@
               </li>
             </ul>  
       </ul>
+    <% end %>  
     </nav>
   </div>
 </header>
